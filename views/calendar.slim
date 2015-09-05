@@ -1,0 +1,13 @@
+table style="text-align: center;"
+  tr
+    - @calendar.day_names.each do |day_name|
+      th= day_name
+
+    - @calendar.each_weeks do |week|
+      tr
+        - week.each_dates do |date|
+          td style=('color: gray;' unless date.current_month?)
+            span style=('color: red;' if date.today?) = date.day
+a> href="/#{@calendar.prev_month_date.year}/#{@calendar.prev_month_date.month}" &larr;
+a href="/#{@current.year}/#{@current.month}" Today
+a< href="/#{@calendar.next_month_date.year}/#{@calendar.next_month_date.month}" &rarr;
